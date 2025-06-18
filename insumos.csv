@@ -1,0 +1,11 @@
+id,nombre,tipo,cantidad,unidad,fecha_vencimiento,ubicacion
+1001,Paracetamol 500mg,Medicamento,150,tabletas,2025-12-31,Bodega Central
+1002,Jeringa 5ml,Descartables,200,unidades,2026-01-15,Bodega Central
+1003,Suero 0.9%,Medicamento,100,bolsas,2025-09-30,Bodega Central
+1004,Gasas Esteriles,Curacion,120,paquetes,2025-11-20,Traumatologia
+1005,Antibiotico Amoxicilina,Medicamento,80,cajas,2025-08-25,UCI
+1006,Aspirina 100mg,Medicamento,60,tabletass,2026-03-10,Urgencias
+1007,Mascarilla N95,Proteccion,150,unidades,2025-10-01,Urgencias
+1008,Guantes Latex,Proteccion,200,pares,2025-12-01,UCI
+1009,Oxigeno Terapia,Equipo,50,bombonas,2026-05-30,UCI
+1010,Anticoagulante Heparina,Medicamento,70,ampollas,2025-07-15,Medicina Interna
