@@ -5,6 +5,8 @@
 #include "tdas/extra.h"
 #include "tdas/list.h"
 
+#define MAX_LINEA 512
+
 // ----------------------------------------------------
 // Estructuras principales
 // ----------------------------------------------------
@@ -120,7 +122,6 @@ List* leer_pacientes(FILE* archivo) {
     while (fgets(linea, sizeof(linea), archivo)) {
         Paciente* p = (Paciente*) malloc(sizeof(Paciente));
         if (!p) {
-            perror("Error malloc");
             continue; // Si falla, saltar a la siguiente línea
         }
 
@@ -142,7 +143,7 @@ List* leer_pacientes(FILE* archivo) {
             free(p);
             continue;
         }
-        
+
         p->turnos_espera = 0;
         list_pushBack(lista_pacientes, p);
     }
@@ -155,17 +156,43 @@ List* leer_pacientes(FILE* archivo) {
 // ----------------------------------------------------
 List* leer_insumos(FILE* archivo) {
     List* lista_insumos = list_create();
-    char linea[300];
+    if (!lista_insumos) return NULL;
+
+    char linea[MAX_LINEA];
+    int CAMPOS_ESPERADOS = 7;
+
+    if (fgets(linea, sizeof(linea), archivo) == NULL) { // Saltar encabezado
+        return lista_insumos; // Retorna lista vacía si no hay datos
+    }
 
     fgets(linea, sizeof(linea), archivo); // Saltar encabezado
 
     while (fgets(linea, sizeof(linea), archivo)) {
+
+        size_t len = strlen(linea);
+        if (len > 0 && linea[len - 1] == '\n') {
+            int ch;
+            while (ch = fgetc(archivo), ch != EOF && ch != '\n'); // Consumir el resto de la línea
+        }
+
+        linea[strcspn(linea, "\r\n")] = '\0'; // Eliminar salto de línea
+
         Insumo* ins = (Insumo*) malloc(sizeof(Insumo));
         if (ins == NULL) continue;
 
-        sscanf(linea, "%d,%99[^,],%49[^,],%d,%29[^,],%19[^,],%49[^\n]",
-               &ins->id, ins->nombre, ins->tipo, &ins->cantidad,
-               ins->unidad, ins->fecha_vencimiento, ins->ubicacion);
+        int leidos = sscanf(linea, "%d,%99[^,],%49[^,],%d,%29[^,],%19[^,],%49[^\n]",
+                &ins->id, 
+                ins->nombre, 
+                ins->tipo, 
+                &ins->cantidad,
+                ins->unidad, 
+                ins->fecha_vencimiento, 
+                ins->ubicacion);
+
+        if (leidos != CAMPOS_ESPERADOS || ins->cantidad < 0) {
+            free(ins);
+            continue; // Si no se leyeron todos los campos o cantidad es negativa, saltar
+        }
 
         list_pushBack(lista_insumos, ins);
     }
