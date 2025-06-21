@@ -112,26 +112,37 @@ void distribuir_insumos_a_salass(List* salas, int* limite_diario);
 // ----------------------------------------------------
 List* leer_pacientes(FILE* archivo) {
     List* lista_pacientes = list_create();
+    if (!lista_pacientes) return NULL;
     char linea[300];
 
     fgets(linea, sizeof(linea), archivo); // Saltar encabezado
 
     while (fgets(linea, sizeof(linea), archivo)) {
         Paciente* p = (Paciente*) malloc(sizeof(Paciente));
-        if (p == NULL) continue;
+        if (!p) {
+            perror("Error malloc");
+            continue; // Si falla, saltar a la siguiente línea
+        }
 
         sscanf(linea,
-               "%d,%49[^,],%49[^,],%d,%49[^,],%99[^,],%d,%d,%d",
-               &p->id,
-               p->nombre,
-               p->apellido,
-               &p->edad,
-               p->area,
-               p->diagnostico,
-               &p->gravedad,
-               &p->insumo_req_id,
-               &p->cantidad_req);
-
+            "%d,%49[^,],%49[^,],%d,%49[^,],%99[^,],%d,%d,%d",
+            &p->id,
+            p->nombre,
+            p->apellido,
+            &p->edad,
+            p->area,
+            p->diagnostico,
+            &p->gravedad,
+            &p->insumo_req_id,
+            &p->cantidad_req);
+        
+        if (p->gravedad < 1 || p->gravedad > 3 ||
+        p->edad < 0 || p->edad > 120 ||
+        p->cantidad_req < 0) {
+            free(p);
+            continue;
+        }
+        
         p->turnos_espera = 0;
         list_pushBack(lista_pacientes, p);
     }
