@@ -43,8 +43,8 @@ Primero asegurarse de tener los archivos "pacientes.csv" e "insumos.csv" en el m
 
 Desarrollado como proyecto academico para la asignatura de Estructura de Dato 2025 S1.
 
-Nicolás Fuentes
-Felipe Aguilera
-Pablo Saldivia
-Lucas Manriquez
+- **Nicolas Fuentes**
+- **Felipe Aguilera**
+- **Pablo Saldivia**
+- **Lucas Manriquez**
 ---
