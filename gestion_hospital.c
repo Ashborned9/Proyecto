@@ -155,29 +155,30 @@ List* leer_pacientes(FILE* archivo) {
 // Leer insumos desde CSV
 // ----------------------------------------------------
 List* leer_insumos(FILE* archivo) {
+    static const int CAMPOS_ESPERADOS = 7;
+
+    if (!archivo) return NULL;
+    
     List* lista_insumos = list_create();
     if (!lista_insumos) return NULL;
 
     char linea[MAX_LINEA];
-    int CAMPOS_ESPERADOS = 7;
 
     if (fgets(linea, sizeof(linea), archivo) == NULL) { // Saltar encabezado
         return lista_insumos; // Retorna lista vacía si no hay datos
     }
-
-    fgets(linea, sizeof(linea), archivo); // Saltar encabezado
 
     while (fgets(linea, sizeof(linea), archivo)) {
 
         size_t len = strlen(linea);
         if (len > 0 && linea[len - 1] == '\n') {
             int ch;
-            while (ch = fgetc(archivo), ch != EOF && ch != '\n'); // Consumir el resto de la línea
+            while ((ch = fgetc(archivo)) != '\n' && ch != EOF); // Consumir el resto de la línea
         }
 
         linea[strcspn(linea, "\r\n")] = '\0'; // Eliminar salto de línea
 
-        Insumo* ins = (Insumo*) malloc(sizeof(Insumo));
+        Insumo* ins = malloc(sizeof(Insumo));
         if (ins == NULL) continue;
 
         int leidos = sscanf(linea, "%d,%99[^,],%49[^,],%d,%29[^,],%19[^,],%49[^\n]",
