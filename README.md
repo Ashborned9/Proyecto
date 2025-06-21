@@ -24,3 +24,27 @@ Primero asegurarse de tener los archivos "pacientes.csv" e "insumos.csv" en el m
 ```sh
 ./gestor_hospital
 ```
+
+## Funcionalidades principales:
+
+- **Carga de datos**: Lee paciente e insumos desde archivos CSV.
+- **Gestion de salas**:Permite transferir insumos entre salas y gestionar la capacidad de cada una.
+- **Atencion de pacientes**: Simula la atencion y curacion de pacientes, consumiendo insumos.
+- **Gestion de bodega**: Permite pedir insumos al proveedor y distribuirlos a las salas, respetando un limite diario.
+- **Estadistica**: Muestra estadisticas de pacientes, fallecidos y reputacion del hospital.
+- **Turnos y eventos diarios**:Simula el paso de los dias, con llegada de nuevos pacientes y eventos automaticos.
+
+## Estructuras de datos utilizadas:
+- **Listas**: Para mejorar colecciones de pacientes, insumos y salas.
+- **Mapas y Sets**: Para busquedas rapidas y gestion de elementos unicos.
+- **Heap, Queue, Stack**: Estructuras auxiliares para futuras extensiones.
+
+## Equipo de desarrollo:
+
+Desarrollado como proyecto academico para la asignatura de Estructura de Dato 2025 S1.
+
+Nicolás Fuentes
+Felipe Aguilera
+Pablo Saldivia
+Lucas Manriquez
+---
