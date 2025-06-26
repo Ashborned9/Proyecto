@@ -94,7 +94,7 @@ List *split_string(const char *str, const char *delim) {
 }
 
 // Función para limpiar la pantalla
-void limpiarPantalla() { system("clear"); }
+void limpiarPantalla() { system("cls"); }
 
 void presioneTeclaParaContinuar() {
   puts("Presione una tecla para continuar...");
