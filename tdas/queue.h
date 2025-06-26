@@ -1,7 +1,7 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 #include "list.h"
-
+#include <stdbool.h>
 typedef List Queue;
 
 Queue *queue_create(Queue *queue) { return list_create(); }
@@ -14,4 +14,7 @@ void *queue_front(Queue *queue) { return list_first(queue); }
 
 void queue_clean(Queue *queue) { list_clean(queue); }
 
+static inline bool queue_is_empty(Queue *queue) {
+    return list_first(queue) == NULL;
+}
 #endif /* QUEUE_H */
