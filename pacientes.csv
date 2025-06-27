@@ -1,16 +1,16 @@
 id,nombre,apellido,edad,area,diagnostico,gravedad,insumo_req_id,cantidad_req
 1,Ana,Perez,45,Urgencias,Fractura leve,1,1001,2
 2,Jose,Gonzalez,60,UCI,Insuficiencia Respiratoria,3,1005,3
-3,Camila,Salazar,32,Traumatologia,Fractura de fémur,2,1004,1
+3,Camila,Salazar,32,Traumatologia,Fractura de femur,2,1004,1
 4,Matias,Rojas,70,Medicina Interna,Diabetes descompensada,2,1005,2
 5,Laura,Vega,28,Ginecologia,Pre-eclampsia,1,1003,1
 6,Ricardo,Suarez,50,UCI,Sepsis,3,1005,4
-7,Mariana,Munoz,34,Pediatria,Neumonía,2,1001,3
+7,Mariana,Munoz,34,Pediatria,Neumonia,2,1001,3
 8,Diego,Torres,55,Medicina Interna,Insuficiencia Renal,2,1005,2
 9,Sofia,Ramirez,22,Ginecologia,Rotura de ovario,1,1003,2
 10,Carlos,Fernandez,65,Urgencias,Infarto Agudo de Miocardio,3,1006,2
-11,Elena,Quintero,48,Traumatologia,Luxación de hombro,1,1004,1
+11,Elena,Quintero,48,Traumatologia,Luxacion de hombro,1,1004,1
 12,Andres,Gomez,75,UCI,Edema Pulmonar,3,1005,3
 13,Valentina,Rojas,30,Pediatria,Asma,2,1001,2
-14,Pedro,Diaz,80,Medicina Interna,Hipertensión Crónica,1,1003,1
+14,Pedro,Diaz,80,Medicina Interna,Hipertension Cronica,1,1003,1
 15,Isabel,Lopez,27,Urgencias,Cortes profundos,2,1002,5
