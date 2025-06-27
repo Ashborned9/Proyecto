@@ -408,19 +408,19 @@ void transferir_pacientes_menu(List* salas) {
         // Navegación de páginas
         if (input[0] == 'P' || input[0] == 'p') {
             if (pagina < max_paginas) pagina++;
-            else printf("Ya estás en la última página.\n");
+            else printf("Ya estas en la ultima pagina.\n");
             continue;
         }
         if (input[0] == 'A' || input[0] == 'a') {
             if (pagina > 1) pagina--;
-            else printf("Ya estás en la primera página.\n");
+            else printf("Ya estas en la primera pagina.\n");
             continue;
         }
 
         opcion = atoi(input);
         if (opcion == 0) break;
         if (opcion < 1 || opcion > por_pagina || inicio + opcion > total) {
-            printf("Opción inválida.\n");
+            printf("Opcion invalida.\n");
             continue;
         }
 
@@ -736,7 +736,7 @@ void atender_paciente(List* salas) {
         }
     }
     if (!sd || sd->cantidad_total < p->cantidad_req) {
-        printf("Stock insuficiente para el insumo ID %d. Operación cancelada.\n",
+        printf("Stock insuficiente para el insumo ID %d. Operacion cancelada.\n",
                p->insumo_req_id);
         return;
     }
@@ -787,14 +787,14 @@ void pedir_insumos_proveedor(List* salas) {
     // 1) Buscar Bodega Central
     Sala* bodega = buscar_sala(salas, "Bodega Central");
     if (!bodega) {
-        printf("No se encontró la Bodega Central.\n");
+        printf("No se encontro la Bodega Central.\n");
         return;
     }
 
     // 2) Calcular cuota diaria según reputación
     int cuota = BASE_RETIRAR + reputacion * MULTIPLICADOR_REPUTACION;
     if (cuota < 0) cuota = 0;
-    printf("\nMáximo a retirar hoy: %d dosis\n", cuota);
+    printf("\nMaximo a retirar hoy: %d dosis\n", cuota);
 
     // 3) Iterar sobre el mapa para mostrar los insumos disponibles
     printf("\nInsumos disponibles:\n");
@@ -815,12 +815,12 @@ void pedir_insumos_proveedor(List* salas) {
     }
 
     // 4) Seleccionar insumo
-    printf("Seleccione opción (0 para cancelar): ");
+    printf("Seleccione opcion (0 para cancelar): ");
     int opcion;
     scanf("%d", &opcion);
     getchar();
     if (opcion <= 0 || opcion >= idx) {
-        printf("Operación cancelada.\n");
+        printf("Operacion cancelada.\n");
         return;
     }
 
@@ -837,14 +837,14 @@ void pedir_insumos_proveedor(List* salas) {
     int id_sel = *(int*)par->key;
 
     // 6) Pedir cantidad a retirar
-    printf("Unidades a retirar (máx %d): ", cuota);
+    printf("Unidades a retirar (max %d): ", cuota);
     int cantidad;
     scanf("%d", &cantidad);
     getchar();
 
     // 7) Validar y descontar
     if (cantidad <= 0 || cantidad > cuota || cantidad > sel->cantidad_total) {
-        printf("Cantidad inválida.\n");
+        printf("Cantidad invalida.\n");
     } else {
         sel->cantidad_total -= cantidad;
         sel->retirado_hoy   += cantidad;
@@ -864,7 +864,7 @@ void distribuir_insumos_a_salass(List* salas, int* limite_diario) {
         return;
     }
 
-    printf("\nInsumos en Bodega Central (Stock, RetiradoHoy), Quota restante hoy = %d\n", *limite_diario);
+    printf("\nInsumos en Bodega Central (Stock, RetiradoHoy), Cuota restante hoy = %d\n", *limite_diario);
     int idx = 1;
     StockDiario* sd = list_first(bodega->stock_diario);
     while (sd != NULL) {
@@ -999,7 +999,7 @@ void gestionar_bodega(List* salas, int* limite_diario) {
     do {
         printf("\n--- Gestionar Bodega Central ---\n");
         printf("1. Pedir insumos a proveedor\n");
-        printf("2. Distribuir insumos de Bodega a salas (quota diaria: %d)\n", *limite_diario);
+        printf("2. Distribuir insumos de Bodega a salas (cuota diaria: %d)\n", *limite_diario);
         printf("3. Volver al menu anterior\n");
         printf("Seleccione una opcion: ");
         scanf("%d", &opcion_bodega);
@@ -1107,8 +1107,8 @@ void ciclo_diario() {
         printf("1. Mostrar salas\n");
         printf("2. Transferir paciente (turnos restantes: %d)\n", turnos_restantes);
         printf("3. Atender paciente   (turnos restantes: %d)\n", turnos_restantes);
-        printf("4. Pedir insumos (máx hoy: %d unidades)\n", limite_ins);
-        printf("5. Estadísticas\n");
+        printf("4. Pedir insumos (max hoy: %d unidades)\n", limite_ins);
+        printf("5. Estadisticas\n");
         printf("6. Finalizar Turno\n");
         printf("Seleccione una opcion: ");
         scanf("%d", &opt);
