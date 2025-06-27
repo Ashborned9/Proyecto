@@ -747,7 +747,7 @@ void atender_paciente(List* salas) {
 
     if (ins_req->cantidad == 0) {
         list_popCurrent(sala_elegida->insumos);
-        printf("El insumo '%s' se agotó y fue eliminado de la sala.\n", ins_req->nombre);
+        printf("El insumo '%s' se agoto y fue eliminado de la sala.\n", ins_req->nombre);
     }
 
     printf("Paciente ID %d (%s %s) ha sido curado y sale de la sala.\n",
@@ -893,7 +893,7 @@ void distribuir_insumos_a_salass(List* salas, int* limite_diario) {
         return;
     }
 
-    printf("\nInsumos en Bodega Central (Stock, RetiradoHoy), Quota restante hoy = %d\n", *limite_diario);
+    printf("\nInsumos en Bodega Central (Stock, RetiradoHoy), Cuota restante hoy = %d\n", *limite_diario);
     int idx = 1;
     StockDiario* sd = list_first(bodega->stock_diario);
     while (sd != NULL) {
@@ -1049,7 +1049,7 @@ void gestionar_bodega(List* salas, int* limite_diario) {
     do {
         printf("\n--- Gestionar Bodega Central ---\n");
         printf("  a) 1. Pedir insumos a proveedor\n");
-        printf("  b) 2. Distribuir insumos de Bodega a salas (quota diaria: %d)\n", *limite_diario);
+        printf("  b) 2. Distribuir insumos de Bodega a salas (cuota diaria: %d)\n", *limite_diario);
         printf("  c) 0. Volver al menu anterior\n");
         printf("Seleccione una opcion: ");
         scanf("%d", &opcion_bodega);
